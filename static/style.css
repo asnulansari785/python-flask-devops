@@ -1,0 +1,59 @@
+body {
+
+    background: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.container{
+
+    width:70%;
+    margin:auto;
+    margin-top:40px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:10px;
+
+    box-shadow:0px 0px 10px gray;
+
+}
+
+h1{
+
+    color:#0B5394;
+    text-align:center;
+
+}
+
+h2{
+
+    text-align:center;
+
+}
+
+h3{
+
+    color:#38761D;
+
+}
+
+.success{
+
+    color:green;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
