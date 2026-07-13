@@ -20,8 +20,9 @@ pipeline
             steps {
 
                // bat 'pip install -r requirements.txt'
-		bat 'python --version'
-       		bat 'pip --version'
+		    //bat 'python --version'
+       		//bat 'pip --version'
+               bat '"C:\\Users\\ans\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" --version'
             }
         }
 
