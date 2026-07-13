@@ -36,11 +36,16 @@ pipeline
         stage('Deploy'){
 
             steps{
-                bat '''
-docker stop python-flask-app || exit 0
-docker rm python-flask-app || exit 0
-docker run -d --name python-flask-app -p 5000:5000 python-flask-devops:v1
-'''
+              bat '''
+        docker rm -f python-flask-app || exit 0
+        '''
+
+        bat '''
+        docker run -d --name python-flask-app -p 5000:5000 python-flask-devops:v1
+        '''
+
+        bat '''
+        docker ps
             }
         }
     }
