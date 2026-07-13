@@ -47,6 +47,7 @@ pipeline
 
         bat '''
         docker ps
+	'''
             }
         }
     }
