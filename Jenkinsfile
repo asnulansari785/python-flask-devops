@@ -9,7 +9,7 @@ pipeline
 
         stage('checkout'){
             steps{
-                echo 'checkout stage'
+                checkout scm
             }
 
         }
@@ -19,7 +19,7 @@ pipeline
 
             steps {
 
-                echo 'Build stage'
+                bat 'pip install -r requirements.txt'
             }
         }
 
@@ -27,14 +27,18 @@ pipeline
         stage('Docker Build'){
 
             steps{
-                echo 'Docker Build stage'
+                bat 'docker build -t python-flask-devops:v1 .'
             }
         }
 
         stage('Deploy'){
 
             steps{
-                echo 'Deploy stage'
+                bat '''
+docker stop python-flask-app || exit 0
+docker rm python-flask-app || exit 0
+docker run -d --name python-flask-app -p 5000:5000 python-flask-devops:v1
+'''
             }
         }
     }
