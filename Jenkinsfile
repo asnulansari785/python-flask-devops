@@ -30,7 +30,7 @@ pipeline
         stage('Docker Build'){
 
             steps{
-                bat 'docker build -t python-flask-devops:v1 .'
+                bat 'docker build -t python-flask-devops:%BUILD_NUMBER% .'
             }
         }
 
@@ -42,7 +42,7 @@ pipeline
         '''
 
         bat '''
-        docker run -d --name python-flask-app -p 5000:5000 python-flask-devops:v1
+        docker run -d --name python-flask-app -p 5000:5000 python-flask-devops:%BUILD_NUMBER%
         '''
 
         bat '''
