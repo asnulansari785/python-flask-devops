@@ -30,9 +30,25 @@ pipeline
         stage('Docker Build'){
 
             steps{
-                bat 'docker build -t python-flask-devops:%BUILD_NUMBER% .'
+              //  bat 'docker build -t python-flask-devops:%BUILD_NUMBER% .'
+		bat 'docker build -t asnulansari785/python-flask-devops:%BUILD_NUMBER% .'
             }
         }
+
+	stage('Docker Push') {
+   	 steps {
+        	withCredentials([usernamePassword(
+            	credentialsId: 'dockerhub',
+            	usernameVariable: 'DOCKER_USER',
+            	passwordVariable: 'DOCKER_PASS'
+       		 )]) {
+
+            	bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
+           	 bat 'docker push asnulansari785/python-flask-devops:%BUILD_NUMBER%'
+            	bat 'docker logout'
+        	}
+    	}
+	}
 
         stage('Deploy'){
 
@@ -42,7 +58,8 @@ pipeline
         '''
 
         bat '''
-        docker run -d --name python-flask-app -p 5000:5000 python-flask-devops:%BUILD_NUMBER%
+       // docker run -d --name python-flask-app -p 5000:5000 python-flask-devops:%BUILD_NUMBER%
+	 docker run -d --name python-flask-app -p 5000:5000 asnulansari785/python-flask-devops:%BUILD_NUMBER%
         '''
 
         bat '''
